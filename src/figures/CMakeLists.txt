@@ -6,7 +6,10 @@ set(INPUT_SOURCES
 )
 
 set(INPUT_HEADERS
-
+   shape.h
+   triangle.h
+   circle.h
+   rectangle.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${INPUT_SOURCES} ${INPUT_HEADERS})
