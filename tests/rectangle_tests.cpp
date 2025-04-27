@@ -4,6 +4,16 @@
 #include <catch2/catch_approx.hpp>
 #include "figures/rectangle.h"
 
+
+TEST_CASE("Rectangle zero parameter", "")
+{
+    Shape* rectangle = new Rectangle(0, 0);
+
+    REQUIRE(rectangle->CalcPerimeter() == Catch::Approx(0).epsilon(0.0001f));
+
+    delete rectangle;
+}
+
 TEST_CASE("Rectangle parameter precision test", "")
 {
     Shape* rectangle = new Rectangle(2.24343423232,4.34545454546565654);

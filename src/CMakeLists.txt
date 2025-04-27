@@ -18,6 +18,7 @@ FetchContent_MakeAvailable(Catch2)
 add_executable(${PROJECT_NAME} "entry_point.cpp")
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/figures")
+add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/core")
 get_filename_component(TESTS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../tests" ABSOLUTE)
 add_subdirectory("${TESTS_DIR}" "${CMAKE_BINARY_DIR}/tests")
 

@@ -3,8 +3,11 @@
 #include <catch2/benchmark/catch_benchmark.hpp>
 #include <catch2/catch_approx.hpp>
 #include "figures/circle.h"
+#include <limits>
 
-TEST_CASE("Circle parameter presision test", "")
+
+
+TEST_CASE("Circle parameter precision test", "")
 {
     Shape* circle = new Circle(2.2);
    
