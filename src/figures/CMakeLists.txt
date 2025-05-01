@@ -3,6 +3,7 @@ set(INPUT_SOURCES
    circle.cpp
    rectangle.cpp
    shape.cpp
+   FigureFactory.cpp
 )
 
 set(INPUT_HEADERS
@@ -10,6 +11,7 @@ set(INPUT_HEADERS
    triangle.h
    circle.h
    rectangle.h
+   FigureFactory.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${INPUT_SOURCES} ${INPUT_HEADERS})
