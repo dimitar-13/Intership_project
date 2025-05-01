@@ -1,6 +1,6 @@
-#include "figures/shape.h"
+#pragma once
 #include <vector>
-
+#include "figures/shape.h"
 class Application
 {
 public:

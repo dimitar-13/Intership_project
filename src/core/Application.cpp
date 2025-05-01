@@ -1,6 +1,8 @@
 #include "Application.h"
 #include<iostream>
 
+
+
 Application::Application()
 {
     RunProgram();
@@ -23,16 +25,21 @@ void Application::CreateFigureList()
                   << "2)Input figure list."           << '\n'
                   << "3)Input figure list from file." << '\n';
  
+        std::cin >> option;
+
             switch (option)
             {
             case 1: 
                 CreateRandomFigure();
+                return;
                 break;
             case 2:
                 InputFigureString();
+                return;
                 break;
             case 3:
                 ReadFiguresFromFile();
+                return;
                 break;
 
             default:
@@ -49,6 +56,19 @@ void Application::CreateRandomFigure()
 
 void Application::InputFigureString()
 {
+    size_t figure_count = 0;
+    std::string figure_string;
+
+    std::cout << "Enter how many figures u want to input" << '\n';
+    std::cin >> figure_count;
+
+    m_user_figure_list.reserve(figure_count);
+
+    for (size_t i = 0; i < figure_count; i++)
+    {
+        std::cin >> figure_string.data();
+
+    }
 }
 
 void Application::ReadFiguresFromFile()
@@ -67,6 +87,7 @@ void Application::EditFigureList()
                   << "3) Duplicate figure"    << '\n'
                   << "4) Exit"                << '\n';
 
+        std::cin >> option;
         switch (option)
         {
         case 1:
