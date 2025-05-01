@@ -1,11 +1,16 @@
 #include "Application.h"
+#include "figures/FigureFactory.h"
 #include<iostream>
-
 
 
 Application::Application()
 {
     RunProgram();
+}
+
+Application::~Application()
+{
+    ReleaseResources();
 }
 
 void Application::RunProgram()
@@ -61,13 +66,24 @@ void Application::InputFigureString()
 
     std::cout << "Enter how many figures u want to input" << '\n';
     std::cin >> figure_count;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     m_user_figure_list.reserve(figure_count);
 
     for (size_t i = 0; i < figure_count; i++)
     {
-        std::cin >> figure_string.data();
+        std::cout << "Enter figure with following format: <figure_name> <parameters>" << '\n';
+        getline(std::cin,figure_string);
+        Shape* figure = FigureFactory::CreateShape(figure_string);
 
+        if (figure == nullptr)
+        {
+            i--;
+            std::cout << "Failed to create valid figure! Please try again." << '\n';
+            continue;
+        }
+
+        m_user_figure_list.push_back(figure);
     }
 }
 
@@ -119,4 +135,12 @@ void Application::RemoveFigure()
 
 void Application::DuplicateAndAppendToEnd()
 {
+}
+
+void Application::ReleaseResources()
+{
+    for (Shape* shape : m_user_figure_list)
+    {
+        delete shape;
+    }
 }
