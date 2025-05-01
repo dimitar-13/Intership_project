@@ -12,5 +12,5 @@ float Rectangle::CalcPerimeter() const
 
 std::string Rectangle::GetStringRepresentation() const
 {
-    return "rectangle " + std::to_string(m_side_a) + std::to_string(m_side_b);
+    return "rectangle " + std::to_string(m_side_a) + ' ' + std::to_string(m_side_b);
 }

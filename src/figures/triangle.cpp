@@ -13,5 +13,5 @@ float Triangle::CalcPerimeter() const
 
 std::string Triangle::GetStringRepresentation() const
 {
-    return "triangle" + std::to_string(m_side_a) + std::to_string(m_side_b) + std::to_string(m_side_c);
+    return "triangle " + std::to_string(m_side_a) + ' ' + std::to_string(m_side_b) + ' ' + std::to_string(m_side_c);
 }
