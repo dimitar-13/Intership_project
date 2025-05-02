@@ -136,6 +136,8 @@ void Application::EditFigureList()
 
 void Application::ListFigures()
 {
+    for (Shape* figure : m_user_figure_list)
+        std::cout << figure->GetStringRepresentation() << '\n';
 }
 
 void Application::RemoveFigure()
