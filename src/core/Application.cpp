@@ -142,6 +142,25 @@ void Application::ListFigures()
 
 void Application::RemoveFigure()
 {
+    size_t selected_figure_number = 0,selected_figure_index = 0;
+
+    ListFigures();
+    std::cout << "Enter the of figure you want to delete(1,2,3 etc.)" << '\n';
+
+    std::cin >> selected_figure_number;
+
+    if (selected_figure_number > m_user_figure_list.size())
+    {
+        std::cout << "Figure does not exist" << '\n';
+        return;
+    }
+    selected_figure_index = selected_figure_number - 1;
+
+    Shape* figure_to_delete = m_user_figure_list[selected_figure_index];
+
+    m_user_figure_list.erase(m_user_figure_list.begin() + (selected_figure_index));
+
+    delete figure_to_delete;
 }
 
 void Application::DuplicateAndAppendToEnd()
