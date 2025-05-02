@@ -14,3 +14,8 @@ std::string Rectangle::GetStringRepresentation() const
 {
     return "rectangle " + std::to_string(m_side_a) + ' ' + std::to_string(m_side_b);
 }
+
+Prototype* Rectangle::Clone()
+{
+    return new Rectangle(m_side_a,m_side_b);
+}

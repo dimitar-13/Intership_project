@@ -146,6 +146,21 @@ void Application::RemoveFigure()
 
 void Application::DuplicateAndAppendToEnd()
 {
+    size_t selected_figure_index = 0;
+
+    ListFigures();
+    std::cout << "Enter the of figure you want to copy(1,2,3 etc.)" << '\n';
+
+    std::cin >> selected_figure_index;
+
+    if (selected_figure_index > m_user_figure_list.size())
+    {
+        std::cout << "Figure does not exist" << '\n';
+        return;
+    }
+    Prototype* prototype_cast = dynamic_cast<Prototype*>(m_user_figure_list[selected_figure_index]);
+
+    m_user_figure_list.push_back(dynamic_cast<Shape*>(prototype_cast->Clone()));
 }
 
 void Application::ReleaseResources()

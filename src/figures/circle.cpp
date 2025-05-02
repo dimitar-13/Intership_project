@@ -17,3 +17,8 @@ std::string Circle::GetStringRepresentation() const
 {
     return "circle " + std::to_string(m_radius);
 }
+
+Prototype* Circle::Clone()
+{
+    return new Circle(m_radius);
+}
