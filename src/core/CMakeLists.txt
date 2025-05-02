@@ -5,6 +5,7 @@ set(INPUT_SOURCES
 set(INPUT_HEADERS
 	Application.h
 	StringHelper.h
+	Prototype.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${INPUT_SOURCES} ${INPUT_HEADERS})
