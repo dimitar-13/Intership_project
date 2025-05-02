@@ -15,6 +15,8 @@ Application::~Application()
 
 void Application::RunProgram()
 {
+    srand(time(0));
+
     CreateFigureList();
     EditFigureList();
 }
@@ -57,6 +59,13 @@ void Application::CreateFigureList()
 
 void Application::CreateRandomFigure()
 {
+    size_t figure_count = rand() % 10;
+    m_user_figure_list.reserve(figure_count);
+
+    for (size_t i = 0; i < figure_count; i++)
+    {
+        m_user_figure_list.push_back(FigureFactory::CreateRandomShape());
+    }
 }
 
 void Application::InputFigureString()

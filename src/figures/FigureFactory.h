@@ -8,7 +8,7 @@ class FigureFactory
 {
 public:
     static Shape* CreateShape(const std::string& figure_string);
-
+    static Shape* CreateRandomShape();
 private:
     static Shape* CreateTriangle(const std::string& parameter_string);
     static Shape* CreateCircle(const std::string& parameter_string);
