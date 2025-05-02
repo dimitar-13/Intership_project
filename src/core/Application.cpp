@@ -83,7 +83,7 @@ void Application::InputFigureString()
     {
         std::cout << "Enter figure with following format: <figure_name> <parameters>" << '\n';
         getline(std::cin,figure_string);
-        Shape* figure = FigureFactory::CreateShape(figure_string);
+        std::shared_ptr<Shape> figure = FigureFactory::CreateShape(figure_string);
 
         if (figure == nullptr)
         {
@@ -136,7 +136,7 @@ void Application::EditFigureList()
 
 void Application::ListFigures()
 {
-    for (Shape* figure : m_user_figure_list)
+    for (std::shared_ptr<Shape> figure : m_user_figure_list)
         std::cout << figure->GetStringRepresentation() << '\n';
 }
 
@@ -156,11 +156,7 @@ void Application::RemoveFigure()
     }
     selected_figure_index = selected_figure_number - 1;
 
-    Shape* figure_to_delete = m_user_figure_list[selected_figure_index];
-
     m_user_figure_list.erase(m_user_figure_list.begin() + (selected_figure_index));
-
-    delete figure_to_delete;
 }
 
 void Application::DuplicateAndAppendToEnd()
@@ -178,7 +174,7 @@ void Application::DuplicateAndAppendToEnd()
         return;
     }
 
-    Prototype* prototype_cast = dynamic_cast<Prototype*>(m_user_figure_list[selected_figure_number - 1]);
+    std::shared_ptr<Prototype> prototype_cast = std::dynamic_pointer_cast<Prototype>(m_user_figure_list[selected_figure_number - 1]);
 
     if (prototype_cast == nullptr)
     {
@@ -186,13 +182,10 @@ void Application::DuplicateAndAppendToEnd()
         return;
     }
 
-    m_user_figure_list.push_back(dynamic_cast<Shape*>(prototype_cast->Clone()));
+    m_user_figure_list.push_back(std::dynamic_pointer_cast<Shape>(prototype_cast->Clone()));
 }
 
 void Application::ReleaseResources()
 {
-    for (Shape* shape : m_user_figure_list)
-    {
-        delete shape;
-    }
+    m_user_figure_list.clear();
 }

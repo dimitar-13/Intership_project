@@ -1,7 +1,8 @@
 #pragma once
+#include<memory>
 
 class Prototype
 {
 public:
-    virtual Prototype* Clone() = 0;
+    virtual std::shared_ptr<Prototype> Clone() = 0;
 };

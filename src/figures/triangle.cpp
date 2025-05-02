@@ -16,7 +16,7 @@ std::string Triangle::GetStringRepresentation() const
     return "triangle " + std::to_string(m_side_a) + ' ' + std::to_string(m_side_b) + ' ' + std::to_string(m_side_c);
 }
 
-Prototype* Triangle::Clone()
+std::shared_ptr<Prototype> Triangle::Clone()
 {
-    return new Triangle(m_side_a,m_side_b,m_side_c);
+    return std::make_shared<Triangle>(m_side_a,m_side_b,m_side_c);
 }

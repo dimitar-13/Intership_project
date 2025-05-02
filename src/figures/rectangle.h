@@ -9,7 +9,7 @@ public:
 private:
     float CalcPerimeter() const override;
     std::string GetStringRepresentation() const override;
-    Prototype* Clone() override;
+    std::shared_ptr<Prototype> Clone() override;
 private:
     float m_side_a, m_side_b;
 };

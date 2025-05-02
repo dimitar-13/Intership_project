@@ -18,7 +18,7 @@ std::string Circle::GetStringRepresentation() const
     return "circle " + std::to_string(m_radius);
 }
 
-Prototype* Circle::Clone()
+std::shared_ptr<Prototype> Circle::Clone()
 {
-    return new Circle(m_radius);
+    return std::make_shared<Circle>(m_radius);
 }

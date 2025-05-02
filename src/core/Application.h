@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "figures/shape.h"
+#include<memory>
 class Application
 {
 public:
@@ -21,5 +22,5 @@ private:
 
     void ReleaseResources();
 private:
-    std::vector<Shape*> m_user_figure_list;
+    std::vector<std::shared_ptr<Shape>> m_user_figure_list;
 };
