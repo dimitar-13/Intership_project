@@ -1,6 +1,6 @@
+#include <iostream>
 #include "Application.h"
 #include "figures/FigureFactory.h"
-#include<iostream>
 
 
 Application::Application()

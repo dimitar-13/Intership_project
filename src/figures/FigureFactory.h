@@ -1,9 +1,7 @@
 #pragma once
 #include <string>
 #include<memory>
-#include "figures/triangle.h"
-#include "figures/circle.h"
-#include "figures/rectangle.h"
+#include "figures/figures.h"
 
 class FigureFactory
 {

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
-#include "figures/shape.h"
 #include<memory>
+#include "figures/shape.h"
 class Application
 {
 public:

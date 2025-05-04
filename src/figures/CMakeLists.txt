@@ -12,6 +12,7 @@ set(INPUT_HEADERS
    circle.h
    rectangle.h
    FigureFactory.h
+   figures.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${INPUT_SOURCES} ${INPUT_HEADERS})
