@@ -19,6 +19,7 @@ private:
     void ListFigures();
     void RemoveFigure();
     void DuplicateAndAppendToEnd();
+    void StoreBackToFile();
 
     void ReleaseResources();
 private:

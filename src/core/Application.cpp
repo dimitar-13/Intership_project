@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Application.h"
 #include "figures/FigureFactory.h"
+#include "FileHelper.h"
+
+const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/shape_file.txt";
 
 
 Application::Application()
@@ -110,7 +113,8 @@ void Application::EditFigureList()
         std::cout << "1) Display all figures" << '\n'
                   << "2) Remove figure"       << '\n'
                   << "3) Duplicate figure"    << '\n'
-                  << "4) Exit"                << '\n';
+                  << "4) Store figures to file" << '\n'
+                  << "5) Exit"                << '\n';
 
         std::cin >> option;
         switch (option)
@@ -125,6 +129,9 @@ void Application::EditFigureList()
             DuplicateAndAppendToEnd();
             break;
         case 4:
+            StoreBackToFile();
+            break;
+        case 5:
             return;
             break;
         default:
@@ -183,6 +190,19 @@ void Application::DuplicateAndAppendToEnd()
     }
 
     m_user_figure_list.push_back(std::dynamic_pointer_cast<Shape>(prototype_cast->Clone()));
+}
+
+void Application::StoreBackToFile()
+{
+    std::vector<std::string> shape_string_data;
+    shape_string_data.resize(m_user_figure_list.size());
+
+    for (size_t i = 0; i < shape_string_data.size(); i++)
+    {
+        shape_string_data[i] = m_user_figure_list[i]->GetStringRepresentation();
+    }
+
+    FileHelper::WriteToFile(k_Shape_save_file_location, shape_string_data);
 }
 
 void Application::ReleaseResources()
