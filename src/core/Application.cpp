@@ -101,6 +101,17 @@ void Application::InputFigureString()
 
 void Application::ReadFiguresFromFile()
 {
+    std::vector<std::string> file_fig_strings;
+
+    if (!FileHelper::ReadFromFile(k_Shape_save_file_location, file_fig_strings))
+    {
+        return;
+    }
+
+    for (const std::string& figure_string : file_fig_strings)
+    {
+        m_user_figure_list.push_back(FigureFactory::CreateShape(figure_string));
+    }
 }
 
 
@@ -110,11 +121,11 @@ void Application::EditFigureList()
 
     while (true)
     {
-        std::cout << "1) Display all figures" << '\n'
-                  << "2) Remove figure"       << '\n'
-                  << "3) Duplicate figure"    << '\n'
+        std::cout << "1) Display all figures"   << '\n'
+                  << "2) Remove figure"         << '\n'
+                  << "3) Duplicate figure"      << '\n'
                   << "4) Store figures to file" << '\n'
-                  << "5) Exit"                << '\n';
+                  << "5) Exit"                  << '\n';
 
         std::cin >> option;
         switch (option)
