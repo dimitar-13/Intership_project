@@ -1,13 +1,11 @@
 #pragma once
 #include <string>
-#include<memory>
-#include "figures/figures.h"
+#include "figure_factory.h"
 
-class FigureFactory
+class InputFigureFactory : public FigureFactory
 {
 public:
-    static std::shared_ptr<Shape> CreateShape(const std::string& figure_string);
-    static std::shared_ptr<Shape> CreateRandomShape();
+    std::shared_ptr<Shape> create() override;
 private:
     static std::shared_ptr<Shape> CreateTriangle(const std::string& parameter_string);
     static std::shared_ptr<Shape> CreateCircle(const std::string& parameter_string);

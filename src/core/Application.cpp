@@ -1,6 +1,5 @@
 #include <iostream>
 #include "Application.h"
-#include "figures/FigureFactory.h"
 #include "FileHelper.h"
 
 const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/shape_file.txt";
@@ -8,6 +7,9 @@ const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/sha
 
 Application::Application()
 {
+    m_randomFigureFactory = std::make_unique<RandomFigureFactory>();
+    m_inputFigureFactory = std::make_unique<InputFigureFactory>();
+
     RunProgram();
 }
 
@@ -67,14 +69,13 @@ void Application::CreateRandomFigure()
 
     for (size_t i = 0; i < figure_count; i++)
     {
-        m_user_figure_list.push_back(FigureFactory::CreateRandomShape());
+        m_user_figure_list.push_back(m_randomFigureFactory->create());
     }
 }
 
 void Application::InputFigureString()
 {
     size_t figure_count = 0;
-    std::string figure_string;
 
     std::cout << "Enter how many figures u want to input" << '\n';
     std::cin >> figure_count;
@@ -84,9 +85,8 @@ void Application::InputFigureString()
 
     for (size_t i = 0; i < figure_count; i++)
     {
-        std::cout << "Enter figure with following format: <figure_name> <parameters>" << '\n';
-        getline(std::cin,figure_string);
-        std::shared_ptr<Shape> figure = FigureFactory::CreateShape(figure_string);
+       
+        std::shared_ptr<Shape> figure = m_inputFigureFactory->create();
 
         if (figure == nullptr)
         {
@@ -110,7 +110,7 @@ void Application::ReadFiguresFromFile()
 
     for (const std::string& figure_string : file_fig_strings)
     {
-        m_user_figure_list.push_back(FigureFactory::CreateShape(figure_string));
+        //m_user_figure_list.push_back(FigureFactory::CreateShape(figure_string));
     }
 }
 
