@@ -21,8 +21,6 @@ Application::~Application()
 
 void Application::RunProgram()
 {
-    srand(time(0));
-
     CreateFigureList();
     EditFigureList();
 }

@@ -1,4 +1,10 @@
 #include "random_figure_factory.h"
+#include<iostream>
+
+RandomFigureFactory::RandomFigureFactory()
+{
+    srand(time(0));
+}
 
 std::shared_ptr<Shape> RandomFigureFactory::create()
 {
