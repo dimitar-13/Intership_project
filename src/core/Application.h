@@ -26,7 +26,6 @@ private:
 
     void ReleaseResources();
 private:
-    std::unique_ptr<FigureFactory> m_randomFigureFactory;
     std::unique_ptr<FigureFactory> m_inputFigureFactory;
 
     std::vector<std::shared_ptr<Shape>> m_user_figure_list;

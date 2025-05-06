@@ -8,7 +8,6 @@ const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/sha
 
 Application::Application()
 {
-    m_randomFigureFactory = std::make_unique<RandomFigureFactory>();
     m_inputFigureFactory = std::make_unique<InputFigureFactory>();
 
     RunProgram();
@@ -63,12 +62,16 @@ void Application::CreateFigureList()
 
 void Application::CreateRandomFigure()
 {
-    size_t figure_count = rand() % 10;
-    m_user_figure_list.reserve(figure_count);
-
-    for (size_t i = 0; i < figure_count; i++)
+    RandomFigureFactory random_figure_factory(10);
+    std::shared_ptr<Shape> retrieved_shape;
+    while (true)
     {
-        m_user_figure_list.push_back(m_randomFigureFactory->create());
+        retrieved_shape = random_figure_factory.create();
+
+        if (retrieved_shape == nullptr)
+            break;
+
+        m_user_figure_list.push_back(retrieved_shape);
     }
 }
 

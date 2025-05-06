@@ -1,12 +1,31 @@
 #include "random_figure_factory.h"
 #include<iostream>
 
-RandomFigureFactory::RandomFigureFactory()
+RandomFigureFactory::RandomFigureFactory(size_t max_count)
 {
     srand(time(0));
+    size_t figure_count = rand() % max_count;
+
+    for (size_t i = 0; i < figure_count; i++)
+    {
+        m_factory_figure_stack.push(CreateRandomShape());
+    }
 }
 
 std::shared_ptr<Shape> RandomFigureFactory::create()
+{
+    std::shared_ptr<Shape> result = nullptr;
+
+    if (m_factory_figure_stack.empty())
+        return result;
+
+    result = m_factory_figure_stack.top();
+    m_factory_figure_stack.pop();
+
+    return result;
+}
+
+std::shared_ptr<Shape> RandomFigureFactory::CreateRandomShape()
 {
     constexpr const size_t k_figure_type_size = 3;
     constexpr const char* k_figure_types[k_figure_type_size] = {
