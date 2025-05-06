@@ -3,7 +3,7 @@ set(INPUT_SOURCES
    circle.cpp
    rectangle.cpp
    shape.cpp
-   stdin_figure_factory.cpp
+   stream_figure_factory.cpp
    random_figure_factory.cpp
 )
 
@@ -12,7 +12,7 @@ set(INPUT_HEADERS
    triangle.h
    circle.h
    rectangle.h
-   stdin_figure_factory.h
+   stream_figure_factory.h
    random_figure_factory.h
    figures.h
    figure_factory.h

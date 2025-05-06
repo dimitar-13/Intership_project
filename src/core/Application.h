@@ -3,7 +3,7 @@
 #include<memory>
 #include "figures/shape.h"
 #include "figures/random_figure_factory.h"
-#include "figures/stdin_figure_factory.h"
+#include "figures/stream_figure_factory.h"
 
 class Application
 {
@@ -26,7 +26,5 @@ private:
 
     void ReleaseResources();
 private:
-    std::unique_ptr<FigureFactory> m_inputFigureFactory;
-
     std::vector<std::shared_ptr<Shape>> m_user_figure_list;
 };

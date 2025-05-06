@@ -2,14 +2,13 @@
 #include "Application.h"
 #include "FileHelper.h"
 #include "StringHelper.h"
+#include <sstream>
 
 const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/shape_file.txt";
 
 
 Application::Application()
 {
-    m_inputFigureFactory = std::make_unique<InputFigureFactory>();
-
     RunProgram();
 }
 
@@ -77,42 +76,46 @@ void Application::CreateRandomFigure()
 
 void Application::InputFigureString()
 {
+    std::stringstream figure_input_stream;
+
     size_t figure_count = 0;
 
-    std::cout << "Enter how many figures u want to input" << '\n';
+    std::cout << "Enter how many figures you want to input:" << '\n';
     std::cin >> figure_count;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    m_user_figure_list.reserve(figure_count);
+    for (size_t i = 0; i < figure_count; ++i) {
+        std::string line;
 
-    for (size_t i = 0; i < figure_count; i++)
-    {
-       
-        std::shared_ptr<Shape> figure = m_inputFigureFactory->create();
+        std::cout << "Figure enter format: <figure name> <parameters...>" <<'\n';
+        std::getline(std::cin, line);
+        figure_input_stream << line << '\n';
+    }
 
-        if (figure == nullptr)
-        {
-            i--;
-            std::cout << "Failed to create valid figure! Please try again." << '\n';
-            continue;
-        }
+    StreamFigureFactory factory(figure_input_stream);
 
-        m_user_figure_list.push_back(figure);
+    for (size_t i = 0; i < figure_count; ++i) {
+        m_user_figure_list.push_back(factory.create());
     }
 }
 
 void Application::ReadFiguresFromFile()
 {
-    std::vector<std::string> file_fig_strings;
+    std::fstream file(k_Shape_save_file_location);
 
-    if (!FileHelper::ReadFromFile(k_Shape_save_file_location, file_fig_strings))
-    {
+    if (!file.is_open())
         return;
-    }
 
-    for (const std::string& figure_string : file_fig_strings)
+    StreamFigureFactory factory(file);
+
+    while(true)
     {
-        m_user_figure_list.push_back(StringHelper::StringToShape(figure_string));
+        std::shared_ptr<Shape> retrieved_shape = factory.create();
+
+        if (retrieved_shape == nullptr)
+            break;
+
+        m_user_figure_list.push_back(retrieved_shape);
     }
 }
 
