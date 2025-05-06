@@ -1,34 +1,14 @@
 #pragma once
 #include<string>
 #include<vector>
+#include <memory>
+#include "figures/figures.h"
 
 class StringHelper
 {
 public:
-    static std::vector<double> ExtractParametersFromString(
-        const std::string& parameter_string,char seporator_symbol)
-    {
-        std::vector<double> result;
-        std::string str_number;
-        str_number.reserve(10);
-
-        for (size_t i = 0; i < parameter_string.size(); i++)
-        {
-            if (parameter_string[i] == seporator_symbol)
-            {
-                if (!str_number.empty())
-                {
-                    result.push_back(stod(str_number));
-                    str_number.clear();
-                }
-                continue;
-            }
-            str_number += parameter_string[i];
-        }
-
-        if(!str_number.empty())
-            result.push_back(stod(str_number));
-
-        return result;
-    }
+    static std::shared_ptr<Shape> StringToShape(const std::string& figure_string);
+    static std::vector<double> ExtractParametersFromString(const std::string& parameter_string, char seporator_symbol);
+private:
+    static void StringToLower(std::string& string);
 };

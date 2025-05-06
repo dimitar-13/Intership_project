@@ -1,6 +1,7 @@
 set(INPUT_SOURCES
 	Application.cpp
 	FileHelper.cpp
+	StringHelper.cpp
 )
 
 set(INPUT_HEADERS

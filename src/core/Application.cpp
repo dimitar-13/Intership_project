@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Application.h"
 #include "FileHelper.h"
+#include "StringHelper.h"
 
 const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/shape_file.txt";
 
@@ -110,7 +111,7 @@ void Application::ReadFiguresFromFile()
 
     for (const std::string& figure_string : file_fig_strings)
     {
-        //m_user_figure_list.push_back(FigureFactory::CreateShape(figure_string));
+        m_user_figure_list.push_back(::CreateShape(figure_string));
     }
 }
 
