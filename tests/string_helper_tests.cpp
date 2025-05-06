@@ -6,6 +6,28 @@
 #include "core/StringHelper.h"
 
 
+TEST_CASE("Figure factory case sensitive test", "[string_helper]")
+{
+    std::shared_ptr<Shape> triangle = StringHelper::StringToShape("TrIaNgle 10 3.42 5.32");
+
+    REQUIRE(triangle != nullptr);
+}
+
+TEST_CASE("Figure factory case negative parameters", "[string_helper]")
+{
+    std::shared_ptr<Shape> triangle = StringHelper::StringToShape("triangle -10 3.42 5.32");
+
+    REQUIRE(triangle == nullptr);
+}
+
+TEST_CASE("Figure factory case not enough parameters", "[string_helper]")
+{
+    std::shared_ptr<Shape> triangle = StringHelper::StringToShape("triangle 10 3.42");
+
+    REQUIRE(triangle == nullptr);
+}
+
+
 TEST_CASE("Edge case no values.", "[string_extract]")
 {
     std::vector<double> values = StringHelper::ExtractParametersFromString("", ' ');

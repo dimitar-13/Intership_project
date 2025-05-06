@@ -111,7 +111,7 @@ void Application::ReadFiguresFromFile()
 
     for (const std::string& figure_string : file_fig_strings)
     {
-        m_user_figure_list.push_back(::CreateShape(figure_string));
+        m_user_figure_list.push_back(StringHelper::StringToShape(figure_string));
     }
 }
 
