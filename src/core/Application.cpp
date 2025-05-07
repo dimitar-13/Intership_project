@@ -14,7 +14,6 @@ Application::Application()
 
 Application::~Application()
 {
-    ReleaseResources();
 }
 
 void Application::RunProgram()
@@ -219,9 +218,4 @@ void Application::StoreBackToFile()
     }
 
     FileHelper::WriteToFile(k_Shape_save_file_location, shape_string_data);
-}
-
-void Application::ReleaseResources()
-{
-    m_user_figure_list.clear();
 }

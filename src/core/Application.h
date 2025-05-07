@@ -24,7 +24,6 @@ private:
     void DuplicateAndAppendToEnd();
     void StoreBackToFile();
 
-    void ReleaseResources();
 private:
     std::vector<std::shared_ptr<Shape>> m_user_figure_list;
 };
