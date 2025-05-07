@@ -14,9 +14,6 @@ private:
     void RunProgram();
 
     void CreateFigureList();
-    void CreateRandomFigure();
-    void InputFigureString();
-    void ReadFiguresFromFile();
     
     void EditFigureList();
     void ListFigures();

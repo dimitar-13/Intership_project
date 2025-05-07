@@ -5,7 +5,7 @@
 class RandomFigureFactory : public FigureFactory
 {
 public:
-    RandomFigureFactory(size_t max_count);
+    RandomFigureFactory(size_t min_boundary,size_t max_boundary);
 
     std::shared_ptr<Shape> create() override;
 private:

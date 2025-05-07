@@ -5,9 +5,9 @@
 #include <fstream>
 
 
-StreamFigureFactory::StreamFigureFactory(std::istream& stream):
-    m_figure_stream(stream)
+StreamFigureFactory::StreamFigureFactory(std::istream& stream)
 {
+    m_figure_stream << stream.rdbuf();
 }
 
 std::shared_ptr<Shape> StreamFigureFactory::create()

@@ -5,6 +5,7 @@ set(INPUT_SOURCES
    shape.cpp
    stream_figure_factory.cpp
    random_figure_factory.cpp
+   shape_input_factory.cpp
 )
 
 set(INPUT_HEADERS
@@ -16,6 +17,8 @@ set(INPUT_HEADERS
    random_figure_factory.h
    figures.h
    figure_factory.h
+   abstract_factory.h
+   shape_input_factory.h
 )
 
 target_sources(${PROJECT_NAME} PRIVATE ${INPUT_SOURCES} ${INPUT_HEADERS})

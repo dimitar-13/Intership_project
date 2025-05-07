@@ -9,6 +9,5 @@ class StringHelper
 public:
     static std::shared_ptr<Shape> StringToShape(const std::string& figure_string);
     static std::vector<double> ExtractParametersFromString(const std::string& parameter_string, char seporator_symbol);
-private:
     static void StringToLower(std::string& string);
 };

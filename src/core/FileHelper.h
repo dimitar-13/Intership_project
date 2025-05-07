@@ -6,6 +6,6 @@
 class FileHelper
 {
 public:
-    static bool WriteToFile(const char* file_path,const std::vector<std::string>& file_info);
+    static bool WriteToFile(const std::string& file_path,const std::vector<std::string>& file_info);
 };
 

@@ -4,6 +4,7 @@ triangle_tests.cpp
 rectangle_tests.cpp
 string_helper_tests.cpp
 stream_factory_tests.cpp
+shape_input_factory_tests.cpp
 )
 
 set(INPUT_HEADERS

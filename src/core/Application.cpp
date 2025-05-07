@@ -2,9 +2,8 @@
 #include "Application.h"
 #include "FileHelper.h"
 #include "StringHelper.h"
-#include <sstream>
 
-const char* k_Shape_save_file_location = "D:/c++/Intership/Intership_project/shape_file.txt";
+#include <figures/shape_input_factory.h>
 
 
 Application::Application()
@@ -25,99 +24,34 @@ void Application::RunProgram()
 
 void Application::CreateFigureList()
 {
-    int option = 0;
-
+    std::string choice;
+    std::unique_ptr<FigureFactory> factory = nullptr;
     while (true)
     {
-        std::cout << "1)Create random figure list."   << '\n'
-                  << "2)Input figure list."           << '\n'
-                  << "3)Input figure list from file." << '\n';
+        std::cout << "1)Random (creates random figure list)"   << '\n'
+                  << "2)Input  (input a figure list)"           << '\n'
+                  << "3)File   (creates figure list from file)" << '\n';
  
-        std::cin >> option;
+        std::cin >> choice;
+        
+        ShapeInputFactory abs_factory(choice);
+        factory = abs_factory.createFactory();
 
-            switch (option)
-            {
-            case 1: 
-                CreateRandomFigure();
-                return;
-                break;
-            case 2:
-                InputFigureString();
-                return;
-                break;
-            case 3:
-                ReadFiguresFromFile();
-                return;
-                break;
-
-            default:
-                std::cout << "Invalid option." << '\n';
-                break;
-            }
+        if (factory != nullptr)
+            break;
     }
 
-}
-
-void Application::CreateRandomFigure()
-{
-    RandomFigureFactory random_figure_factory(10);
-    std::shared_ptr<Shape> retrieved_shape;
     while (true)
     {
-        retrieved_shape = random_figure_factory.create();
+        std::shared_ptr<Shape> retrieved_shape = factory->create();
 
         if (retrieved_shape == nullptr)
             break;
 
         m_user_figure_list.push_back(retrieved_shape);
     }
+
 }
-
-void Application::InputFigureString()
-{
-    std::stringstream figure_input_stream;
-
-    size_t figure_count = 0;
-
-    std::cout << "Enter how many figures you want to input:" << '\n';
-    std::cin >> figure_count;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-    for (size_t i = 0; i < figure_count; ++i) {
-        std::string line;
-
-        std::cout << "Figure enter format: <figure name> <parameters...>" <<'\n';
-        std::getline(std::cin, line);
-        figure_input_stream << line << '\n';
-    }
-
-    StreamFigureFactory factory(figure_input_stream);
-
-    for (size_t i = 0; i < figure_count; ++i) {
-        m_user_figure_list.push_back(factory.create());
-    }
-}
-
-void Application::ReadFiguresFromFile()
-{
-    std::fstream file(k_Shape_save_file_location);
-
-    if (!file.is_open())
-        return;
-
-    StreamFigureFactory factory(file);
-
-    while(true)
-    {
-        std::shared_ptr<Shape> retrieved_shape = factory.create();
-
-        if (retrieved_shape == nullptr)
-            break;
-
-        m_user_figure_list.push_back(retrieved_shape);
-    }
-}
-
 
 void Application::EditFigureList()
 {
@@ -216,6 +150,10 @@ void Application::StoreBackToFile()
     {
         shape_string_data[i] = m_user_figure_list[i]->GetStringRepresentation();
     }
+    std::string file_path;
 
-    FileHelper::WriteToFile(k_Shape_save_file_location, shape_string_data);
+    std::cout << "Enter file path" << '\n';
+    std::cin >> file_path;
+
+    FileHelper::WriteToFile(file_path, shape_string_data);
 }

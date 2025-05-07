@@ -1,7 +1,7 @@
 #include "FileHelper.h"
 #include <iostream>
 
-bool FileHelper::WriteToFile(const char* file_path, const std::vector<std::string>& file_info)
+bool FileHelper::WriteToFile(const std::string& file_path, const std::vector<std::string>& file_info)
 {
     std::ofstream file_stream(file_path);
     

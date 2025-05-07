@@ -1,10 +1,15 @@
 #include "random_figure_factory.h"
 #include<iostream>
 
-RandomFigureFactory::RandomFigureFactory(size_t max_count)
+RandomFigureFactory::RandomFigureFactory(size_t min_boundary, size_t max_boundary)
 {
     srand(time(0));
-    size_t figure_count = rand() % max_count;
+    size_t figure_count = 0;
+    do
+    {
+        figure_count = rand() % max_boundary;
+    } while (!(figure_count > min_boundary && figure_count < max_boundary));
+    
 
     for (size_t i = 0; i < figure_count; i++)
     {
